@@ -1,26 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}Contenu de la commande - 销售单内容
+{% endblock %}
 
 {% block body %}
-    <h1>Commande</h1>
+	<h1>销售单内容 - Contenu de la commande</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ commande.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ commande.id }}</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('commande_index') }}">back to list</a>
+	<a href="{{ path('commande_index') }}">回到指令列表 - Retour à la liste des commandes</a>
 
-    <a href="{{ path('commande_edit', {'id': commande.id}) }}">edit</a>
+	<a href="{{ path('commande_edit', {'id': commande.id}) }}">修改订单 - Modifier la commande</a>
 
-    {{ include('commande/_delete_form.html.twig') }}
+	{{ include('commande/_delete_form.html.twig') }}
 {% endblock %}

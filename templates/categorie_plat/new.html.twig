@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New CategoriePlat{% endblock %}
+{% block title %}New CategoriePlat
+{% endblock %}
 
 {% block body %}
-    <h1>Create new CategoriePlat</h1>
+	<h1>请您添加一种菜肴</h1>
 
-    {{ include('categorie_plat/_form.html.twig') }}
+	{{ include('categorie_plat/_form.html.twig') }}
 
-    <a href="{{ path('categorie_plat_index') }}">back to list</a>
+	<a href="{{ path('categorie_plat_index') }}">回到菜肴种类清单</a>
 {% endblock %}

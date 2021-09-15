@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Plat{% endblock %}
+{% block title %}加一道菜 - Ajouter un plat
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Plat</h1>
+	<h1>加一道菜 - Ajouter un plat</h1>
 
-    {{ include('plat/_form.html.twig') }}
+	{{ include('plat/_form.html.twig') }}
 
-    <a href="{{ path('plat_index') }}">back to list</a>
+	<a href="{{ path('plat_index') }}">回到菜单 - Retour à la liste des plats</a>
 {% endblock %}

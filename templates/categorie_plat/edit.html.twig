@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit CategoriePlat{% endblock %}
+{% block title %}Edit CategoriePlat
+{% endblock %}
 
 {% block body %}
-    <h1>Edit CategoriePlat</h1>
+	<h1>Edit CategoriePlat</h1>
 
-    {{ include('categorie_plat/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('categorie_plat/_form.html.twig', {'button_label': '更新'}) }}
 
-    <a href="{{ path('categorie_plat_index') }}">back to list</a>
+	<a href="{{ path('categorie_plat_index') }}">back to list</a>
 
-    {{ include('categorie_plat/_delete_form.html.twig') }}
+	{{ include('categorie_plat/_delete_form.html.twig') }}
 {% endblock %}
