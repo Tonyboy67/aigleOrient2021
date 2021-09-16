@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Plat{% endblock %}
+{% block title %}返回菜品列表 - Retour liste des plats
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Plat</h1>
+	<h1>修改菜品数据 - Modifier les informations du plat</h1>
 
-    {{ include('plat/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('plat/_form.html.twig', {'button_label': '更新 - Modifier'}) }}
 
-    <a href="{{ path('plat_index') }}">back to list</a>
+	<a href="{{ path('plat_index') }}">返回菜品列表 - Retour liste des plats</a>
 
-    {{ include('plat/_delete_form.html.twig') }}
+	{{ include('plat/_delete_form.html.twig') }}
 {% endblock %}

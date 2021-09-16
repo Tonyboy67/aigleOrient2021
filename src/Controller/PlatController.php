@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Plat;
 use App\Form\PlatType;
+use App\Services\HandleImage;
 use App\Repository\PlatRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/plat')]
 class PlatController extends AbstractController
@@ -22,13 +24,23 @@ class PlatController extends AbstractController
     }
 
     #[Route('/new', name: 'plat_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    public function new(Request $request, HandleImage $handleImage): Response
     {
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile=$form->get('image_file')->getData();
+
+            if($imageFile){
+            //     $originalFileName=pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+            //     $safeFileName=$slugger->slug($originalFileName);
+            //     $slugFileName=$safeFileName.'-'.uniqid().'.'.$imageFile->guessExtention();
+                $handleImage->saveImage($imageFile, $plat);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($plat);
             $entityManager->flush();
@@ -51,12 +63,25 @@ class PlatController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'plat_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Plat $plat): Response
+    public function edit(Request $request, Plat $plat, HandleImage $handleImage): Response
     {
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
 
+
+        $vintageImage=$plat->getImage();
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imageFile = $form->get('image_upload')->getData(); 
+
+            if($imageFile)
+            {
+                $handleImage->editImage($imageFile, $plat, $vintageImage); 
+
+            }
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('plat_index', [], Response::HTTP_SEE_OTHER);
@@ -69,9 +94,11 @@ class PlatController extends AbstractController
     }
 
     #[Route('/{id}', name: 'plat_delete', methods: ['POST'])]
-    public function delete(Request $request, Plat $plat): Response
+    public function delete(Request $request, Plat $plat, HandleImage $handleImage): Response
     {
         if ($this->isCsrfTokenValid('delete'.$plat->getId(), $request->request->get('_token'))) {
+            $vintageImage = $plat->getImage();
+            $handleImage->deleteImage($vintageImage);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($plat);
             $entityManager->flush();

@@ -1,39 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Plat index{% endblock %}
+{% block title %}菜品一览  - Liste des plats
+{% endblock %}
 
 {% block body %}
-    <h1>Plat index</h1>
+	<h1>菜品一览  - Liste des plats</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for plat in plats %}
-            <tr>
-                <td>{{ plat.id }}</td>
-                <td>{{ plat.nom }}</td>
-                <td>{{ plat.description }}</td>
-                <td>{{ plat.image }}</td>
-                <td>
-                    <a href="{{ path('plat_show', {'id': plat.id}) }}">show</a>
-                    <a href="{{ path('plat_edit', {'id': plat.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				{# <th>Id</th> #}
+				<th>菜名 - Nom</th>
+				{# <th>菜品说明 - Description</th> #}
+				<th>照片 - Image</th>
+				<th>动作 - Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for plat in plats %}
+				<tr>
+					{# <td>{{ plat.id }}</td> #}
+					<td>{{ plat.nom }}</td>
+					{# <td>{{ plat.description }}</td> #}
+					<td><img src="{{ asset( plat.image ) }}" style=" width: 100px; object-fit: contain;"></td>
+					<td>
+						<a href="{{ path('plat_show', {'id': plat.id}) }}">展示 - Afficher</a>
+						|
+						<a href="{{ path('plat_edit', {'id': plat.id}) }}">更新 - &Eacute;diter</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">没有保存菜品 - Aucun plat saisi</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('plat_new') }}">Create new</a>
+	<a href="{{ path('plat_new') }}">添加一个菜 - Ajouter un plat</a>
 {% endblock %}
