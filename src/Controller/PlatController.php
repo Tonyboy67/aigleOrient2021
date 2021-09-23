@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Plat;
 use App\Form\PlatType;
+use App\Repository\CategoriePlatRepository;
 use App\Services\HandleImage;
 use App\Repository\PlatRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,14 +18,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PlatController extends AbstractController
 {
     #[Route('/', name: 'plat_index', methods: ['GET'])]
-    public function index(PlatRepository $platRepository): Response
+    public function index(PlatRepository $platRepository, CategoriePlatRepository $categorieRepository): Response
     {
         return $this->render('plat/index.html.twig', [
-            'plats' => $platRepository->findAll(),
+            //'plats' => $platRepository->findAll(),
+            'categoriesPlats' => $categorieRepository->findAll(),
         ]);
     }
 
+    
+
     #[Route('/new', name: 'plat_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN', message:'Réservé aux administrateurs')]
     public function new(Request $request, HandleImage $handleImage): Response
     {
         $plat = new Plat();

@@ -3,6 +3,11 @@
 {% block title %}New CategoriePlat
 {% endblock %}
 
+{% block stylesheets %}
+	{#{{ encore_entry_link_tags('app') }}#}
+	<link href="{{ asset('/css/style.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
 {% block body %}
 	<h1>请您添加一种菜肴</h1>
 

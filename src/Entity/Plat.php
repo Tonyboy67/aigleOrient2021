@@ -44,6 +44,11 @@ class Plat
      */
     private $platCommandes;
 
+    /**
+     * @ORM\Column(type="bigint")
+     */
+    private $prix;
+
     public function __construct()
     {
         $this->platCommandes = new ArrayCollection();
@@ -133,6 +138,18 @@ class Plat
                 $platCommande->setIdPlat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(string $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }
