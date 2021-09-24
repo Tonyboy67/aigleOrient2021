@@ -1,0 +1,88 @@
+<nav
+	class="navbar no expand class bg-dark navbar-dark fixed-top listederoulante" id="navbarDynamique">
+
+	<!--div contenant les trois items du menu de navigation
+	                - Deux boutons sont nécessaires : en effet, la liste des plats étant trop longue, et celle-ci ne pouvant être scrollable une fois déroulée, on ne pouvait voir sur mon mobile que le début de la liste jusqu'aux "Desserts".
+	                J'ai donc subdivisé le tout en deux listes qui restent visibles chacune quelle que soit la hauteur de l'écran, dont le déroulement est piloté par deux poutons respectivement "PLATS" et "BOISSONS"-->
+	<div class="menunavigation">
+		<a class="navbar-brand" href="#"><img src="./images/icones/logoao.jpg" alt="Restaurant Aigle d'Orient - 露凝香•川味居" class="logoimg"/></a>
+
+		<div id="groupeboutons">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTypesPlat" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>PLATS</button>
+
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBoissons" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>BOISSONS</button>
+
+
+			<a class="nav-link" href="./apropos.html">关于 - &Agrave; propos / Contact<span class="sr-only">(current)</span>
+			</a>
+
+		</div>
+	</div>
+
+
+	<div class="collapse navbar-collapse navbar-inverse black listederoulante" id="navbarTypesPlat">
+		<ul class="navbar-nav ml-auto listederoulante">
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#tresor">镇店之宝 - Le Trésor de Chongqing</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#nouveauxplats">新品尝鲜 - Nouveautés</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#specsichuan">我们经典招牌菜 - Spécialités du Sichuan</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#platssichuan">川香热菜 - Plats du Sichuan</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#woks">香煮干锅 - Woks</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#platsfroids" text-uppercase>别样凉菜 - Plats froids variés</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#legsautes">清心时蔬 - Légumes sautés</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#soupes">解腻靓汤 - Soupes</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#accompagnements">主食 - Accompagnements</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#desserts">甜点 - Desserts</a>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="collapse navbar-collapse navbar-inverse black listederoulante" id="navbarBoissons">
+		<ul class="navbar-nav ml-auto listederoulante">
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#aperitifs">开胃酒 - Apéritifs</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#bieres">啤酒 - Bières</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#vrouges">红酒 - Vins rouges</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#vblancs">白葡萄酒 - Vins blancs</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#vrose">玫瑰酒 - Vin rosé</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#vpichet">投手里装得酒 - Vin en pichet</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link text-uppercase" href="#bchaudes">
+					热的饮料 - Boissons chaudes</a>
+			</li>
+
+		</ul>
+	</div>
+</nav>

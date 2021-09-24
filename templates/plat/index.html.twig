@@ -1,73 +1,113 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}菜品一览  - Liste des plats
+{% block title %}
+	菜品一览  - Liste des plats
 {% endblock %}
 
 
-{% block head %}{% endblock %}
+{% block head %}
+	<link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
 
 {% block body %}
 	{% block header %}{% endblock %}
 	<h1>菜品一览  - Liste des plats</h1>
 
-	{# <table class="table">
-																									<thead>
-																										<tr>
-																											<th>Id</th>
-																											<th>菜名 - Nom</th>
-																											<th>菜品说明 - Description</th>
-																											<th>照片 - Image</th>
-																											<th>动作 - Actions</th>
-																										</tr>
-																									</thead>
-																									<tbody>
-																										{% for plat in plats %}
-																											<tr>
-																												<td>{{ plat.id }}</td>
-																												<td>{{ plat.nom }}</td>
-																												<td>{{ plat.description }}</td>
-																												<td><img src="{{ asset( plat.image ) }}" style=" width: 100px; object-fit: contain;"></td>
-																												<td>
-																													<a href="{{ path('plat_show', {'id': plat.id}) }}">展示 - Afficher</a>
-																													|
-																													<a href="{{ path('plat_edit', {'id': plat.id}) }}">更新 - &Eacute;diter</a>
-																												</td>
-																											</tr>
-																										{% else %}
-																											<tr>
-																												<td colspan="3">没有保存菜品 - Aucun plat saisi</td>
-																											</tr>
-																										{% endfor %}
-																									</tbody>
-																								</table>
-																								 #}
+	{# 
+																																															<table class="table">
+																																															<thead>
+																																																<tr>
+																																																	<th>Id</th>
+																																																	<th>菜名 - Nom</th>
+																																																	<th>菜品说明 - Description</th>
+																																																	<th>照片 - Image</th>
+																																																	<th>动作 - Actions</th>
+																																																</tr>
+																																															</thead>
+																																															<tbody>
+																																																{% for plat in plats %}
+																																																	<tr>
+																																																		<td>{{ plat.id }}</td>
+																																																		<td>{{ plat.nom }}</td>
+																																																		<td>{{ plat.description }}</td>
+																																																		<td><img src="{{ asset( plat.image ) }}" style=" width: 100px; object-fit: contain;"></td>
+																																																		<td>
+																																																			<a href="{{ path('plat_show', {'id': plat.id}) }}">展示 - Afficher</a>
+																																																			|
+																																																			<a href="{{ path('plat_edit', {'id': plat.id}) }}">更新 - &Eacute;diter</a>
+																																																		</td>
+																																																	</tr>
+																																																{% else %}
+																																																	<tr>
+																																																		<td colspan="3">没有保存菜品 - Aucun plat saisi</td>
+																																																	</tr>
+																																																{% endfor %}
+																																																</tbody>
+																																															</table>
+																																															#}
+	{# 
+																																						<main class="">
+																																							<div class="row">
+																																								{% for  categoriePlat in categoriesPlats %}
+																																					
+																																									{% if categoriePlat.plats is not empty %}
+																																										<div class="col-12">
+																																											<h2 id="{{ categoriePlat.id }}" class="titretypeplat">{{ categoriePlat.nom }}</h2>
+																																										</div>
+																																										{% for plat in categoriePlat.plats %}
+																																											<div class="col-6 col-md-4 mt-3">
+																																												<div class="card">
+																																													<div class="card-header">
+																																														<h4 style="font-weight: bolder;">
+																																															{{ plat.nom }}
+																																														</h4>
+																																													</div>
+																																													<div class="card-body">
+																																														<img class="w-100" src="{{ asset( plat.image ) }}" alt="{{ plat.nom }}" style="height: 300px; object-fit: contain; ">
+																																													</div>
+																																													<div class="card-footer">
+																																														<p style="font-weight: bolder">{{ plat.prix }}</p>
+																																													</div>
+																																												</div>
+																																											</div>
+																																										{% endfor %}
+																																									{% endif %}
+																																					
+																																								{% endfor %}
+																																							</div>
+																																						</main> #}
 
-	<main class="flexbox-container-type-plats ">
 
+	<main>
+		{# <div class="row"> #}
 		{% for  categoriePlat in categoriesPlats %}
-			<section class="conteneur-plats" id="">
+			{% if categoriePlat.plats is not empty %}
+				{# <div class="col-6"> #}
+
 				<h2 id="{{ categoriePlat.id }}" class="titretypeplat">{{ categoriePlat.nom }}</h2>
+				<div class="flexbox-container">
+					{% for plat in categoriePlat.plats %}
+						{# <div class="col-6 col-md-4 mt-3"> #}
 
-				{% for plat in categoriePlat.plats %}
-					<div class="flexbox-container ">
-						<article class="plat">
-							<p>
-								{# {{ plat.description }} #}
-								<img src="{{ asset( plat.image ) }}" alt="{{ plat.nom }}">
-								{{ plat.nom }}
-								-
-								{{ plat.prix }}
-							</p>
-						</article>
-					</div>
-					{# {% else %}
-																								
-																																		没有保存菜品 - Aucun plat saisi dans
-																																		{{ categoriePlat }} #}
-				{% endfor %}
-			</section>
+						<div class="card">
+							<div class="card-header">
+								<h4 style="font-weight: bolder;">
+									{{ plat.nom }}
+								</h4>
+							</div>
+							<div class="card-body">
+								<img class="w-100" src="{{ asset( plat.image ) }}" alt="{{ plat.nom }}" style="width: 230px; height: 153;">
+							</div>
+							<div class="card-footer">
+								<p style="font-weight: bolder">{{ plat.prix }}</p>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				{# </div> #}
+			{% endif %}
 		{% endfor %}
-
+		{# </div> #}
 	</main>
 
 

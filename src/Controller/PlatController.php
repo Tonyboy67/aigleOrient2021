@@ -18,15 +18,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PlatController extends AbstractController
 {
     #[Route('/', name: 'plat_index', methods: ['GET'])]
-    public function index(PlatRepository $platRepository, CategoriePlatRepository $categorieRepository): Response
+    public function index(CategoriePlatRepository $categorieRepository): Response
     {
         return $this->render('plat/index.html.twig', [
-            //'plats' => $platRepository->findAll(),
-            'categoriesPlats' => $categorieRepository->findAll(),
+             'categoriesPlats' => $categorieRepository->findAll(),
         ]);
     }
-
-    
 
     #[Route('/new', name: 'plat_new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN', message:'Réservé aux administrateurs')]
@@ -38,7 +35,7 @@ class PlatController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageFile=$form->get('image_file')->getData();
+            $imageFile=$form->get('image_upload')->getData();
 
             if($imageFile){
             //     $originalFileName=pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);

@@ -134,13 +134,22 @@ h2 {
     padding-top: 8.3rem;
 }
 
-.plat {
+.card {
     font-family: Helvetica, Impact, sans-serif;
     margin: 3px;
     background-color: orange;
     font-weight: bolder;
     width: 250px;
     border-radius: 10px;
+}
+
+.card-header,
+.card-body,
+.card-footer {
+    margin: 0px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
 }
 
 .plat p img {
@@ -159,14 +168,11 @@ h2 {
 
 .flexbox-container {
     display: flex;
-    /*FLEX DIRECTION*/
-    /* flex-direction: row; */
-    /* flex-wrap: wrap; */
-    /*On regroupe !!!*/
     flex-flow: row wrap;
-    /* flex-direction: row-reverse; */
-    /*FLEX WRAP*/
     justify-content: center;
+    /*FLEX DIRECTION*/
+    /*On regroupe !!!*/
+    /* flex-direction: row-reverse; */
     /*justify-content: stretch;*/
     /*ALIGN ITEMS */
     /*ALIGN CONTENT*/
@@ -196,7 +202,7 @@ h2 {
 /*Transition de couleur progressive
     au survol du plat*/
 
-article {
+.card {
     /* background-color: lightblue; */
     transition-property: background-color;
     transition-duration: 0.5s;
@@ -208,7 +214,7 @@ article {
      ici des "articles", et leur ajout
      au panier viendront plus tard*/
 
-article:hover {
+.card:hover {
     background-color: lightgreen;
     cursor: pointer;
     /* pointer-events: ; */
