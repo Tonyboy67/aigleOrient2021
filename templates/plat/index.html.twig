@@ -37,11 +37,10 @@
 								<!-- card-footer -->
 								<div class="card-footer">
 									<p>{{ plat.prix }}
+										-
+										<a href="{{ path('plat_show', {'id': plat.id}) }}">显示</a>
 										{% if app.user %}
 											{% if app.user.roles[0] is same as "ROLE_ADMIN" %}
-												-
-												<a href="{{ path('plat_show', {'id': plat.id}) }}">
-													显示</a>
 												/
 												<a href="{{ path('plat_edit', {'id': plat.id}) }}">修改</a>
 											{% endif %}
@@ -59,9 +58,15 @@
 		{# </div> #}
 	</main>
 
-	<footer>
-		<a class="" href="{{ path('plat_new') }}">
-			<button class="">添加一个菜 - Ajouter un plat</button>
-		</a>
-	</footer>
+	{% if app.user %}
+		{% if app.user.roles[0] is same as "ROLE_ADMIN" %}
+			<footer>
+
+				<a class="" href="{{ path('plat_new') }}">
+					<button class="">添加一个菜 - Ajouter un plat</button>
+				</a>
+
+			</footer>
+		{% endif %}
+	{% endif %}
 {% endblock %}
