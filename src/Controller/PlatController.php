@@ -3,20 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
+use App\Entity\User;
 use App\Form\PlatType;
-use App\Repository\CategoriePlatRepository;
 use App\Services\HandleImage;
 use App\Repository\PlatRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Repository\CategoriePlatRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/plat')]
 class PlatController extends AbstractController
 {
+ 
     #[Route('/', name: 'plat_index', methods: ['GET'])]
     public function index(CategoriePlatRepository $categorieRepository): Response
     {
@@ -29,6 +31,7 @@ class PlatController extends AbstractController
     #[IsGranted('ROLE_ADMIN', message:'Réservé aux administrateurs')]
     public function new(Request $request, HandleImage $handleImage): Response
     {
+        //$this->user=$user;
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
         $form->handleRequest($request);
