@@ -143,6 +143,10 @@ h1 {
     margin-top: 15px;
 }
 
+.totalite-palts {
+    margin-bottom: 100px;
+}
+
 .card {
     /* background-color: lightblue; */
     height: 350px;
@@ -150,7 +154,7 @@ h1 {
     background-color: rgb(248, 248, 149);
     transition-property: background-color;
     transition-duration: 0.5s;
-    margin: 5px
+    margin: 5px;
 }
 
 .card:hover {
@@ -228,10 +232,10 @@ footer {
     position: fixed;
     height: 3em;
     bottom: 0;
-    margin-top: 20px;
     margin-bottom: 0.2em;
     width: 100%;
     background-color: rgba(60, 255, 0, 0.774);
+    /* margin-top: 120px; */
 }
 
 footer a button {

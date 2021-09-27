@@ -3,11 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Plat;
+use App\Entity\CategoriePlat;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class PlatType extends AbstractType
 {
@@ -24,9 +27,26 @@ class PlatType extends AbstractType
                 'label'=> '添加图片 - ajouter une image',
                 'mapped'=>false
             ])
-            ->add('prix')
-            ->add('idCategorie')
+           // ->add('prix')
+            ->add('prix', MoneyType::class,[
+                'divisor' => 100,
+            ])
+            //->add('tag', ChoiceType::class, array('choices'=>array()));
+            ->add('idCategorie', EntityType::class,[
+                'required' => false,
+                'label' => 'Catégorie de plat : ',
+                'placeholder' => '-- 请选择菜肴类型 - Choisir un type de plat --',
+                'class' => CategoriePlat::class,
+                'choice_label' => function(CategoriePlat $categorie){
+                    return $categorie->getNom();
+                    return strtoupper($categorie->getNom());
+                }
+            ]);
+            //->add('idCategorie');
+
+            
         ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)
