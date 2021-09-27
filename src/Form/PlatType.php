@@ -14,8 +14,12 @@ class PlatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('description')
+            ->add('nom', TextType::class, [
+                'label' => '菜名 - Nom du plat'
+            ])
+            ->add('description', TextType::class, [
+                'label' => '描述 - Description'
+            ])
             ->add('image_upload', FileType::class, [
                 'label'=> '添加图片 - ajouter une image',
                 'mapped'=>false

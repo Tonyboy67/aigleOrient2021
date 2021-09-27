@@ -134,12 +134,24 @@ h2 {
     padding-top: 8.3rem;
 }
 
+
+/* .navbar {
+    margin-bottom: 15px;
+} */
+
+h1 {
+    margin-top: 15px;
+}
+
 .card {
     font-family: Helvetica, Impact, sans-serif;
-    margin: 3px;
-    background-color: orange;
-    font-weight: bolder;
-    width: 250px;
+    margin: 5px;
+    margin-bottom: 50px;
+    background-color: rgb(255, 230, 0);
+    /* font-weight: bold; */
+    font-size: 1em;
+    width: 350px;
+    height: 370px;
     border-radius: 10px;
 }
 
@@ -152,9 +164,33 @@ h2 {
     padding-left: 3px;
 }
 
+.card-body img {
+    width: 300px;
+    height: 220px;
+}
+
+.card-header {
+    height: 5.5em;
+}
+
+.card-body {
+    height: 230px;
+}
+
+.card-footer {
+    height: 2em;
+    font-size: 1.5em;
+    ;
+}
+
+.plats-categorie {
+    margin-bottom: 20px;
+    ;
+}
+
 .plat p img {
-    width: 230px;
-    height: 153px;
+    width: 300px;
+    height: 200px;
     margin-bottom: 8px;
 }
 
@@ -215,9 +251,36 @@ h2 {
      au panier viendront plus tard*/
 
 .card:hover {
-    background-color: lightgreen;
+    background-color: rgb(238, 186, 144);
     cursor: pointer;
     /* pointer-events: ; */
+}
+
+footer {
+    display: flex;
+    ;
+    width: 100%;
+    flex-flow: row;
+    position: fixed;
+    height: 3em;
+    bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 0.2em;
+    width: 100%;
+    background-color: rgba(60, 255, 0, 0.774);
+}
+
+footer a button {
+    height: 2em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    margin-left: 5px;
+    background-color: rgb(0, 26, 255);
+    font-size: 1.3em;
+    padding: 0.3em;
+    color: white;
+    border-radius: 10px;
+    /* margin-bottom: 5px; */
 }
 
 
