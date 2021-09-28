@@ -6,6 +6,7 @@ use App\Repository\PlatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Intl\Intl;
 
 /**
  * @ORM\Entity(repositoryClass=PlatRepository::class)
@@ -47,7 +48,7 @@ class Plat
     /**
      * @ORM\Column(type="bigint")
      */
-    private $prix;
+    private int $prix;
 
     public function __construct()
     {
@@ -142,12 +143,12 @@ class Plat
         return $this;
     }
 
-    public function getPrix(): ?string
+    public function getPrix(): ?int
     {
         return $this->prix;
     }
 
-    public function setPrix(string $prix): self
+    public function setPrix(int $prix): self
     {
         $this->prix = $prix;
 

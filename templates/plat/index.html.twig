@@ -20,7 +20,6 @@
 					<h2 id="{{ categoriePlat.id }}" class="titretypeplat">{{ categoriePlat.nom }}</h2>
 					<div class="flexbox-container">
 						{% for plat in categoriePlat.plats %}
-
 							<div
 								class="card">
 
@@ -36,7 +35,7 @@
 								</div>
 								<!-- card-footer -->
 								<div class="card-footer">
-									<p>{{ plat.prix }}
+									<p>{{ plat.prix | amount }}
 										-
 										<a href="{{ path('plat_show', {'id': plat.id}) }}">显示</a>
 										{% if app.user %}

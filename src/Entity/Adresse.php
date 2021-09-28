@@ -44,10 +44,16 @@ class Adresse
      */
     private $commandes;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="idAdresse")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +152,33 @@ class Adresse
             if ($commande->getAdresseLivraison() === $this) {
                 $commande->setAdresseLivraison(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addIdAdresse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeIdAdresse($this);
         }
 
         return $this;

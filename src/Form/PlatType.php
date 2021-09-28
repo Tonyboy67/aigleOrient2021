@@ -30,11 +30,15 @@ class PlatType extends AbstractType
            // ->add('prix')
             ->add('prix', MoneyType::class,[
                 'divisor' => 100,
+                'label' =>  '价格 - Prix',
+                'currency' => 'EUR',
+                'attr' => [
+                'placeholder' => '请输菜的价格 - Veuillez saisir un prix',]
             ])
             //->add('tag', ChoiceType::class, array('choices'=>array()));
             ->add('idCategorie', EntityType::class,[
                 'required' => false,
-                'label' => 'Catégorie de plat : ',
+                'label' => '菜肴类型 - Catégorie de plat : ',
                 'placeholder' => '-- 请选择菜肴类型 - Choisir un type de plat --',
                 'class' => CategoriePlat::class,
                 'choice_label' => function(CategoriePlat $categorie){
