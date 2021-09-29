@@ -21,20 +21,20 @@
 					<div class="flexbox-container">
 						{% for plat in categoriePlat.plats %}
 							<div
-								class="card">
+								class="card cplat">
 
 								<!-- card-header -->
-								<div class="card-header">
+								<div class="card-header ch-plat">
 									<h4>
 										{{ plat.nom }}
 									</h4>
 								</div>
 								<!-- card-body -->
-								<div class="card-body">
+								<div class="card-body cb-plat">
 									<img class="w-100" src="{{ asset( plat.image ) }}" alt="{{ plat.nom }}">
 								</div>
 								<!-- card-footer -->
-								<div class="card-footer">
+								<div class="card-footer cf-plat">
 									<p>{{ plat.prix | amount }}
 										-
 										<a href="{{ path('plat_show', {'id': plat.id}) }}">显示</a>

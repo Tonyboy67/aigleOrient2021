@@ -147,7 +147,7 @@ h1 {
     margin-bottom: 100px;
 }
 
-.card {
+.cplat {
     /* background-color: lightblue; */
     height: 330px;
     width: 325px;
@@ -157,27 +157,27 @@ h1 {
     margin: 5px;
 }
 
-.card:hover {
+.cplat:hover {
     background-color: rgb(238, 186, 144);
     cursor: pointer;
     /* pointer-events: ; */
 }
 
-.card-header h4,
-.card-footer p {
+.ch-plat h4,
+.cf-plat p {
     margin: 0px;
     padding-top: 3px;
     /* padding-right: 3px; */
     padding-left: 3px;
-    font-weight: bolder;
+    font-weight: 900;
 }
 
-.card-header h4 {
+.ch-plat h4 {
     font-size: 1em;
     height: 1.5em
 }
 
-.card-body img {
+.cb-plat img {
     width: 320px;
     height: 220px;
 }
