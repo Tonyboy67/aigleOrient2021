@@ -35,7 +35,6 @@ class PlatType extends AbstractType
                 'attr' => [
                 'placeholder' => '请输菜的价格 - Veuillez saisir un prix',]
             ])
-            //->add('tag', ChoiceType::class, array('choices'=>array()));
             ->add('idCategorie', EntityType::class,[
                 'required' => false,
                 'label' => '菜肴类型 - Catégorie de plat : ',
@@ -47,10 +46,6 @@ class PlatType extends AbstractType
                 }
             ]);
             //->add('idCategorie');
-
-            
-        ;
-        
     }
 
     public function configureOptions(OptionsResolver $resolver)
