@@ -1,0 +1,43 @@
+<nav class="navbar fixed-top navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#"><img src="{{ asset('img/icones/logoao.jpg') }}" alt="Restaurant Aigle d'Orient - 露凝香•川味居" class="logoimg"/></a>
+
+		<div id="groupeboutons">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPlats" aria-controls="navbarPlats" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>饭菜<br/>PLATS<br/>ENTR&Eacute;ES
+			</button>
+
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBoissonsDesserts" aria-controls="navbarBoissonsDesserts" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>饮料<br/>BOISSONS<br/>DESSERTS
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbarPlats">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				{% for  categoriePlat in categoriesPlats %}
+					{% if categoriePlat.plats is not empty %}
+						{% if categoriePlat.id < 12  %}
+							<li class="nav-item active">
+								<a class="nav-link text-uppercase" href="#{{ categoriePlat.id }}">{{ categoriePlat.nom }}</a>
+							</li>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbarBoissonsDesserts">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				{% for  categoriePlat in categoriesPlats %}
+					{% if categoriePlat.plats is not empty %}
+						{% if categoriePlat.id > 11  %}
+							<li class="nav-item active">
+								<a class="nav-link text-uppercase" href="#{{ categoriePlat.id }}">{{ categoriePlat.nom }}</a>
+							</li>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</nav>

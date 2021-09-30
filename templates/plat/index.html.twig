@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+
 	{% block header %}{% endblock %}
 	<h1>菜品一览  - Liste des plats</h1>
 
@@ -46,8 +47,6 @@
 										{% endif %}
 									</p>
 								</div>
-
-
 							</div>
 						{% endfor %}
 					</div>
@@ -60,11 +59,9 @@
 	{% if app.user %}
 		{% if app.user.roles[0] is same as "ROLE_ADMIN" %}
 			<footer>
-
 				<a class="" href="{{ path('plat_new') }}">
 					<button class="">添加一个菜 - Ajouter un plat</button>
 				</a>
-
 			</footer>
 		{% endif %}
 	{% endif %}
