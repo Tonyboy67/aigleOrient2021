@@ -21,31 +21,19 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('prenom', TextType::class, [
-                'label' => '请输您的名字 - Ajouter votre prénom',
+                'label' => '请输您的名字 - Votre prénom',
                 'required' => false,
             ])
             ->add('nom', TextType::class, [
-                'label' => '请输您的姓 - Ajouter votre nom',
+                'label' => '请输您的姓 - Votre nom',
                 'required' => false,
             ])
             ->add('telephone', TextType::class, [
-                'label' => '请输您的电话号码 - Ajouter un numéro de téléphone',
+                'label' => '请输您的电话号码 - Téléphone',
                 'attr' => [
                     'placeholder' => '请输您的电话号 - Votre téléphone',],
                 'required' => false,
             ])
-
-
-
-            /*
-            ->add('email', EmailType::class,[
-                'label'=> '请输一个电子邮箱 - Ajouter un email',
-                'attr' => [
-                    'placeholder' => '请输您的电子邮箱 - Saisir ici votre email',],
-                'required' => false,
-            ])
-            */
-
 
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -55,9 +43,10 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])*/
+            
             ->add('plainPassword', RepeatedType::class, [
-                'first_options'  => ['label' => '请输您的密码 - Votre mot de passe'],
-                'second_options' => ['label' => '请再输您的密码 - Répetez votre mot de passe'],
+                'first_options'  => ['label' => '请输您的密码 - Mot de passe'],
+                'second_options' => ['label' => '请再输您的密码 - Répetez mot de passe'],
                 'type' => PasswordType::class,
                 'mapped' => false,
 
@@ -66,13 +55,10 @@ class RegistrationFormType extends AbstractType
                 // this is read and encoded in the controller
 
                 
-  
-               
-                
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => '请输您的密码 - Veuillez entrer un mot de passe',
+                        'message' => '请输您的密码 - Entrez un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
