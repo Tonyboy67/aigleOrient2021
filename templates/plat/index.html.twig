@@ -14,9 +14,11 @@
 	{% block header %}{% endblock %}
 	<h1>菜品一览  - Liste des plats</h1>
 
-	<main class="totalite-palts">
+	<main class="totalite-palts" style="margin-bottom: 80px;">
+
 		{% for  categoriePlat in categoriesPlats %}
 			{% if categoriePlat.plats is not empty %}
+
 				<div class="plats-categorie">
 					<h2 id="{{ categoriePlat.id }}" class="titretypeplat">{{ categoriePlat.nom }}</h2>
 					<div class="flexbox-container">
@@ -51,14 +53,16 @@
 						{% endfor %}
 					</div>
 				</div>
+
 			{% endif %}
 		{% endfor %}
+
 		{# </div> #}
 	</main>
 
 	{% if app.user %}
 		{% if app.user.roles[0] is same as "ROLE_ADMIN" %}
-			<footer>
+			<footer style="margin-top: 50px;">
 				<a class="" href="{{ path('plat_new') }}">
 					<button class="">添加一个菜 - Ajouter un plat</button>
 				</a>

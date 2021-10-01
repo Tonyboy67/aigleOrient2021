@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\CategoriePlat;
 use App\Form\CategoriePlatType;
 use App\Repository\CategoriePlatRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/categorie/plat')]
 class CategoriePlatController extends AbstractController
@@ -21,7 +22,8 @@ class CategoriePlatController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'categorie_plat_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'categorie_plat_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN', message:'Désolé... Réservé aux seuls administrateurs')]
     public function new(Request $request): Response
     {
         $categoriePlat = new CategoriePlat();
@@ -51,6 +53,7 @@ class CategoriePlatController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'categorie_plat_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN', message:'Désolé... Réservé aux seuls administrateurs')]
     public function edit(Request $request, CategoriePlat $categoriePlat): Response
     {
         $form = $this->createForm(CategoriePlatType::class, $categoriePlat);
@@ -69,6 +72,7 @@ class CategoriePlatController extends AbstractController
     }
 
     #[Route('/{id}', name: 'categorie_plat_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN', message:'Désolé... Réservé aux seuls administrateurs')]
     public function delete(Request $request, CategoriePlat $categoriePlat): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categoriePlat->getId(), $request->request->get('_token'))) {

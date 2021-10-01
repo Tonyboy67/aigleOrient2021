@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -20,19 +21,32 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('prenom', TextType::class, [
-                'label' => '请输您的名字 - Ajouter votre prénom'
+                'label' => '请输您的名字 - Ajouter votre prénom',
+                'required' => false,
             ])
             ->add('nom', TextType::class, [
-                'label' => '请输您的姓 - Ajouter votre nom'
+                'label' => '请输您的姓 - Ajouter votre nom',
+                'required' => false,
             ])
             ->add('telephone', TextType::class, [
-                'label' => '请输您的电话号码 - Ajouter un numéro de téléphone'
+                'label' => '请输您的电话号码 - Ajouter un numéro de téléphone',
+                'attr' => [
+                    'placeholder' => '请输您的电话号 - Votre téléphone',],
+                'required' => false,
             ])
+
+
+
+            /*
             ->add('email', EmailType::class,[
                 'label'=> '请输一个电子邮箱 - Ajouter un email',
                 'attr' => [
-                    'placeholder' => '请输您的电子邮箱 - Saisir ici votre email',]
+                    'placeholder' => '请输您的电子邮箱 - Saisir ici votre email',],
+                'required' => false,
             ])
+            */
+
+
             /*->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -41,19 +55,28 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])*/
-            ->add('plainPassword', PasswordType::class, [
-                'label'=> '请输您的密码 - Ajouter un mot de passe',
+            ->add('plainPassword', RepeatedType::class, [
+                'first_options'  => ['label' => '请输您的密码 - Votre mot de passe'],
+                'second_options' => ['label' => '请再输您的密码 - Répetez votre mot de passe'],
+                'type' => PasswordType::class,
+                'mapped' => false,
+
+                //'label'=> '请输您的密码 - Ajouter un mot de passe',
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'mapped' => false,
+
+                
+  
+               
+                
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => '请输您的密码 - Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => '请您输最少一个 {{ limit }} 位密码 - {{ limit }} caractères minimum pour votre mot de passe',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

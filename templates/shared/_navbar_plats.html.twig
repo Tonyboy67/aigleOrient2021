@@ -2,55 +2,58 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" href="#"><img src="{{ asset('img/icones/logoao.jpg') }}" alt="Restaurant Aigle d'Orient - 露凝香•川味居" class="logoimg"/></a>
 
-		<div id="groupeboutons">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPlats" aria-controls="navbarPlats" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-				{# 饭菜 - PLATS<br/>ENTR&Eacute;ES #}
-				<img src="{{ asset('img/icones/poisson3.jpg') }}" alt="纸包鱼 - Poisson à l'étuvée" class="" style="height: 2em; width: 3em;"/>
-				<img src="{{ asset('img/icones/riz1.png') }}" alt="纸包鱼 - Poisson à l'étuvée" class="" style="height: 2em; width: 2em;"/>
-			</button>
+		{# On insere les boutons et les listes de catégorie de plats de navigationuniquement pour la page de sélection/visualisation des mets proposés. Ils n'ont rien à faire dans les navbars des autres pages #}
+		{% if categoriesPlats is defined %}
+			<div id="groupeboutons">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPlats" aria-controls="navbarPlats" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					{# 饭菜 - PLATS<br/>ENTR&Eacute;ES #}
+					<img src="{{ asset('img/icones/poisson3.jpg') }}" alt="纸包鱼 - Poisson à l'étuvée" class="" style="height: 2em; width: 3em;"/>
+					<img src="{{ asset('img/icones/riz7.png') }}" alt="纸包鱼 - riz" class="" style="height: 2em; width: 2em;"/>
+				</button>
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBoissonsDesserts" aria-controls="navbarBoissonsDesserts" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-				{# 饮料 - BOISSONS <br/>DESSERTS #}
-				<img src="{{ asset('img/icones/dessert06.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1em; height: 1.5em; padding-top: 8px; margin: 0px;"/>
-				<img src="{{ asset('img/icones/cafe2.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 2em; height: 2.5em; padding-bottom: 13px; margin: 0px;"/>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBoissonsDesserts" aria-controls="navbarBoissonsDesserts" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+					{# 饮料 - BOISSONS <br/>DESSERTS #}
+					<img src="{{ asset('img/icones/dessert08.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1em; height: 1.5em; padding-top: 0px; margin: 0px;"/>
+					<img src="{{ asset('img/icones/cafe2.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 2em; height: 2.5em; padding-bottom: 13px; margin: 0px;"/>
 
-				<img
-				src="{{ asset('img/icones/glace1.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1em; height: 1.5em; padding-bottom: 0px; margin: 0px;"/>
-				{# <img src="{{ asset('img/icones/soda1.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1.5em; height: 1.5em; padding-top:"/> #}
+					<img
+					src="{{ asset('img/icones/glace1.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1em; height: 1.5em; padding-bottom: 0px; margin: 0px;"/>
+					{# <img src="{{ asset('img/icones/soda1.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1.5em; height: 1.5em; padding-top:"/> #}
 
-				<img src="{{ asset('img/icones/vin1.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 2em; height: 1.5em; padding-top:"/>
+					<img src="{{ asset('img/icones/vin1.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 2em; height: 1.5em; padding-top:"/>
 
-			</button>
-		</div>
+				</button>
+			</div>
 
-		<div class="collapse navbar-collapse" id="navbarPlats">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				{% for  categoriePlat in categoriesPlats %}
-					{% if categoriePlat.plats is not empty %}
-						{% if categoriePlat.id < 12  %}
-							<li class="nav-item active">
-								<a class="nav-link text-uppercase" href="#{{ categoriePlat.id }}">{{ categoriePlat.nom }}</a>
-							</li>
+			<div class="collapse navbar-collapse" id="navbarPlats">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					{% for  categoriePlat in categoriesPlats %}
+						{% if categoriePlat.plats is not empty %}
+							{% if categoriePlat.id < 12  %}
+								<li class="nav-item active">
+									<a class="nav-link text-uppercase" href="#{{ categoriePlat.id }}">{{ categoriePlat.nom }}</a>
+								</li>
+							{% endif %}
 						{% endif %}
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
+					{% endfor %}
+				</ul>
+			</div>
 
-		<div class="collapse navbar-collapse" id="navbarBoissonsDesserts">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				{% for  categoriePlat in categoriesPlats %}
-					{% if categoriePlat.plats is not empty %}
-						{% if categoriePlat.id > 11  %}
-							<li class="nav-item active">
-								<a class="nav-link text-uppercase" href="#{{ categoriePlat.id }}">{{ categoriePlat.nom }}</a>
-							</li>
+			<div class="collapse navbar-collapse" id="navbarBoissonsDesserts">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					{% for  categoriePlat in categoriesPlats %}
+						{% if categoriePlat.plats is not empty %}
+							{% if categoriePlat.id > 11  %}
+								<li class="nav-item active">
+									<a class="nav-link text-uppercase" href="#{{ categoriePlat.id }}">{{ categoriePlat.nom }}</a>
+								</li>
+							{% endif %}
 						{% endif %}
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
 	</div>
 </nav>

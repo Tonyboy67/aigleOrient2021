@@ -27,10 +27,11 @@ class PlatController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'plat_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN', message:'Réservé aux administrateurs')]
+    #[Route('/admin/new', name: 'plat_new', methods: ['GET', 'POST'])]
+    
     public function new(Request $request, HandleImage $handleImage): Response
     {
+        //#[IsGranted('ROLE_ADMIN', message:'Désolé... Réservé aux seuls administrateurs')]
         //$this->user=$user;
         $plat = new Plat();
         $form = $this->createForm(PlatType::class, $plat);
@@ -69,6 +70,7 @@ class PlatController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'plat_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN', message:'Désolé... Réservé aux seuls administrateurs')]
     public function edit(Request $request, Plat $plat, HandleImage $handleImage): Response
     {
         $form = $this->createForm(PlatType::class, $plat);
@@ -100,6 +102,7 @@ class PlatController extends AbstractController
     }
 
     #[Route('/{id}', name: 'plat_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN', message:'Désolé... Réservé aux seuls administrateurs')]
     public function delete(Request $request, Plat $plat, HandleImage $handleImage): Response
     {
         if ($this->isCsrfTokenValid('delete'.$plat->getId(), $request->request->get('_token'))) {
