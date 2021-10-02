@@ -28,47 +28,65 @@ class RegistrationFormType extends AbstractType
                 'label' => '请输您的姓 - Votre nom',
                 'required' => false,
             ])
+            ->add('email', EmailType::class,[
+                'label' => 'Email',
+                'attr' => [
+                    'placeholder' => '请输您的电子邮箱 - Votre email',
+                ],
+                 'required' => false,
+            ])
             ->add('telephone', TextType::class, [
                 'label' => '请输您的电话号码 - Téléphone',
                 'attr' => [
                     'placeholder' => '请输您的电话号 - Votre téléphone',],
                 'required' => false,
             ])
+            ->add('plainPassword', RepeatedType::class, [
 
-            /*->add('agreeTerms', CheckboxType::class, [
+                'type' => PasswordType::class,
+                'mapped' => false,
+                'required' => false,
+                'attr' => ['autocomplete' => 'new-password'],
+
+                'first_options'  => [
+                    'label' => '请输您的密码 - Mot de passe',
+                    'constraints'=> [
+                           new NotBlank([
+                            'message' => '请输您的密码 - Entrez un mot de passe',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => '请您输最少一个 {{ limit }} 位密码 - {{ limit }} caractères minimum pour votre mot de passe',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                ],
+
+                'second_options' => [
+                    'label' => '请再输您的密码 - Répetez le mot de passe',
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => '请确认您的密码 - Confirmez votre mot de passe',
+                        ]),
+                        new Length([
+                            'min' => 6,
+                            'minMessage' => '请您输最少一个 {{ limit }} 位密码 - {{ limit }} caractères minimum pour votre mot de passe',
+                            // max length allowed by Symfony for security reasons
+                            'max' => 4096,
+                        ]),
+                    ],
+                ],
+            ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'label' => '同意我们的条款 - Accepter nos conditions',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => '同意我们的条款 - Accepter nos conditions',
                     ]),
                 ],
-            ])*/
-            
-            ->add('plainPassword', RepeatedType::class, [
-                'first_options'  => ['label' => '请输您的密码 - Mot de passe'],
-                'second_options' => ['label' => '请再输您的密码 - Répetez mot de passe'],
-                'type' => PasswordType::class,
-                'mapped' => false,
-
-                //'label'=> '请输您的密码 - Ajouter un mot de passe',
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-
-                
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => '请输您的密码 - Entrez un mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => '请您输最少一个 {{ limit }} 位密码 - {{ limit }} caractères minimum pour votre mot de passe',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

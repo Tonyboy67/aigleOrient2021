@@ -2,7 +2,8 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" href="#"><img src="{{ asset('img/icones/logoao.jpg') }}" alt="Restaurant Aigle d'Orient - 露凝香•川味居" class="logoimg"/></a>
 
-		{# On insere les boutons et les listes de catégorie de plats de navigationuniquement pour la page de sélection/visualisation des mets proposés. Ils n'ont rien à faire dans les navbars des autres pages #}
+
+		{# On insere les boutons et les listes de catégorie de plats de navigationuniquement pour la page de sélection/visualisation des mets proposés. Ils n'ont rien à faire dans les navbars des autres pages -> erreur : categoriesPlats "inconnue au bataillon" #}
 		{% if categoriesPlats is defined %}
 			<div id="groupeboutons">
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPlats" aria-controls="navbarPlats" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,7 +16,7 @@
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBoissonsDesserts" aria-controls="navbarBoissonsDesserts" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 					{# 饮料 - BOISSONS <br/>DESSERTS #}
-					<img src="{{ asset('img/icones/dessert08.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1em; height: 1.5em; padding-top: 0px; margin: 0px;"/>
+					{# <img src="{{ asset('img/icones/dessert08.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 1em; height: 1.5em; padding-top: 0px; margin: 0px;"/> #}
 					<img src="{{ asset('img/icones/cafe2.png') }}" alt="café, desserts, boissons, vins, alcools" class="" style="width: 2em; height: 2.5em; padding-bottom: 13px; margin: 0px;"/>
 
 					<img
@@ -26,6 +27,12 @@
 
 				</button>
 			</div>
+
+			{# Bouton contenant les liens vers les autres pages #}
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dropdownliens" aria-controls="dropdownliens" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
 
 			<div class="collapse navbar-collapse" id="navbarPlats">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -55,5 +62,35 @@
 				</ul>
 			</div>
 		{% endif %}
+
+		<div class="collapse navbar-collapse" id="dropdownliens">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+				<li class="nav-item active">
+					<a class="nav-link text-uppercase" href="{{ path('home') }}">管理工具 - Accueil</a>
+				</li>
+				{% if app.user %}
+					{% if app.user.roles[0] is same as "ROLE_ADMIN" %}
+						<li class="nav-item active">
+							<a class="nav-link text-uppercase" href="#">管理工具 - Administration</a>
+						</li>
+					{% endif %}
+
+					<li class="nav-item active">
+						<a class="nav-link text-uppercase" href="{{ path('app_logout') }}">登出 - Se déconnecter</a>
+					</li>
+				{% else %}
+					<li class="nav-item active">
+						<a class="nav-link text-uppercase" href="{{ path('app_login') }}">请登录 - Se connecter</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link text-uppercase" href="{{ path('app_register') }}">请登记 - Nouveau compte</a>
+					</li>
+				{% endif %}
+				<li class="nav-item active">
+					<a class="nav-link text-uppercase" href="#">关于我们的餐馆 - A propos</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
