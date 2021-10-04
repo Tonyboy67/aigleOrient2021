@@ -2,6 +2,10 @@
 	<div class="container-fluid">
 		<a class="navbar-brand" href="#"><img src="{{ asset('img/icones/logoao.jpg') }}" alt="Restaurant Aigle d'Orient - 露凝香•川味居" class="logoimg"/></a>
 
+		{# Bouton contenant les liens vers les pages communes #}
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dropdownliens" aria-controls="dropdownliens" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
 		{# On insere les boutons et les listes de catégorie de plats de navigationuniquement pour la page de sélection/visualisation des mets proposés. Ils n'ont rien à faire dans les navbars des autres pages -> erreur : categoriesPlats "inconnue au bataillon" #}
 		{% if categoriesPlats is defined %}
@@ -27,11 +31,6 @@
 
 				</button>
 			</div>
-
-			{# Bouton contenant les liens vers les autres pages #}
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dropdownliens" aria-controls="dropdownliens" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
 
 
 			<div class="collapse navbar-collapse" id="navbarPlats">

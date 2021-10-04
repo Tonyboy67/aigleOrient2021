@@ -2,8 +2,8 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['bootstrap_5_layout.html.twig']
     globals:
-       # platRepository: '@App\Repository\PlatRepository'
-        # categorieRepository: '@App\Repository\CategorieRepository'
+    # platRepository: '@App\Repository\PlatRepository'
+    # categorieRepository: '@App\Repository\CategorieRepository'
 
 
 when@test:
